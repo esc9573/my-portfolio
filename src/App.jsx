@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ProjectsSection from './components/ProjectsSection';
@@ -11,15 +10,6 @@ import ThreeBackground from './components/ThreeBackground';
 import ScrollReveal from './components/ScrollReveal';
 
 export default function App() {
-  useEffect(() => {
-    
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
-    }
-
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="relative min-h-screen bg-[#0d0f12] text-white overflow-x-hidden">
 
