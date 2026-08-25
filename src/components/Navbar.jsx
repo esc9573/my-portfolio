@@ -89,18 +89,16 @@ export default function Navbar() {
                             )}
 
                         </button>
-
-                        <a
-                            href="../assets/Cv_ZiadWaleed_Frontend.pdf"
-                            download
-                            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs sm:text-sm transition-all duration-200"
-                        >
-                            <Download className="w-4 h-4" />
-
-                            <span>
-                                Download CV
-                            </span>
-                        </a>
+<a
+    href="/cv.pdf"
+    download="Ziad_Waleed_CV.pdf"
+    className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold transition-all duration-200 text-sm flex items-center gap-2"
+>
+    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+    </svg>
+    Download CV
+</a>
 
                     </div>
 
