@@ -53,39 +53,4 @@ export default function App() {
 
     </div>
   );
-}/*
-export default function App() {
-  return (
-    <div className="relative min-h-screen bg-[#0d0f12] text-white overflow-x-hidden">
-
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <ThreeBackground />
-      </div>
-
-      <div className="relative z-10">
-        <Navbar />
-
-        <main className="space-y-12">
-          <HeroSection />
-
-          <ScrollReveal>
-            <ProjectsSection />
-          </ScrollReveal>
-
-          <ScrollReveal>
-            <CertificatesSection />
-          </ScrollReveal>
-          <ScrollReveal>
-            <ContactSection />
-          </ScrollReveal>
-
-        </main>
-
-        <Footer />
-
-        <FloatingRobot />
-      </div>
-
-    </div>
-  );
-}*/
+}
