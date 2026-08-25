@@ -12,12 +12,11 @@ import ScrollReveal from './components/ScrollReveal';
 
 export default function App() {
   useEffect(() => {
-    // 1. إلغاء استرجاع موقف السكرول القديم من المتصفح
+    
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
 
-    // 2. إجبار السكرول على الصعود لأعلى القمة
     window.scrollTo(0, 0);
   }, []);
 
