@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Phone, Download, Menu, X, Copy, Check } from 'lucide-react';
-
+import cvFile from '../assets/Cv_ZiadWaleed_Frontend.pdf';
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [copied, setCopied] = useState(false);
@@ -188,7 +188,7 @@ export default function Navbar() {
 
 
                             <a
-                                href="/cv.pdf"
+                                href={cvFile}
                                 download
                                 className="flex items-center justify-center gap-2 w-full max-w-sm py-2.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition-all duration-200"
                             >
