@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Phone, Download, Menu, X, Copy, Check } from 'lucide-react';
-import cvFile from '../assets/Cv_ZiadWaleed_Frontend.pdf';
+import cvFile from '../../public/Cv_ZiadWaleed_Frontend.pdf';
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [copied, setCopied] = useState(false);
