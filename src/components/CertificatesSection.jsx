@@ -87,8 +87,15 @@ export default function CertificatesSection() {
 
     const [activeSkillIndex, setActiveSkillIndex] = useState(0);
     const itemRefs = useRef([]);
+    const isFirstRender = useRef(true); // 👈 حارس لمنع السكرول عند تحميل الصفحة لأول مرة
 
     useEffect(() => {
+        // تجاهل أول Render لتجنب السحب عند التحميل
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+
         if (itemRefs.current[activeSkillIndex]) {
             itemRefs.current[activeSkillIndex].scrollIntoView({
                 behavior: 'smooth',
@@ -106,7 +113,6 @@ export default function CertificatesSection() {
         setActiveSkillIndex((prev) => (prev === skills.length - 1 ? 0 : prev + 1));
     };
 
-    // 👈 ضع رابط كل شهادة من Google Drive داخل pdfUrl بدلاً من 'ضع_رابط_درابف_هنا'
     const certificates = [
         {
             id: 1,
@@ -186,17 +192,14 @@ export default function CertificatesSection() {
         <section className="relative w-full min-h-screen bg-[#02040869] text-white py-20 px-4 overflow-hidden select-none">
             <div className="max-w-5xl mx-auto space-y-24 relative z-10">
 
-                {/* ================= SKILLS OMNITRIX DIAL ================= */}
+                {/* SKILLS SECTION */}
                 <div className="text-center space-y-4">
-
-
                     <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-200">
                         TECHNICAL <span className="text-emerald-400 drop-shadow-[0_0_15px_rgba(16,185,129,0.3)]">SKILLS</span>
                     </h2>
 
                     <div className="relative pt-8 pb-4 flex flex-col items-center justify-center">
 
-                        {/* أسهم التنقل */}
                         <div className="absolute top-1/2 -translate-y-1/2 w-full flex justify-between px-2 md:px-0 z-30 pointer-events-none">
                             <button
                                 onClick={handlePrevSkill}
@@ -212,7 +215,6 @@ export default function CertificatesSection() {
                             </button>
                         </div>
 
-                        {/* شريط العناصر التفاعلي والـ Centered */}
                         <div className="flex items-center gap-4 md:gap-6 w-full max-w-3xl min-h-[160px] overflow-x-auto scroll-smooth [ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-4 px-16">
                             {skills.map((skill, index) => {
                                 const isActive = index === activeSkillIndex;
@@ -246,7 +248,6 @@ export default function CertificatesSection() {
                             })}
                         </div>
 
-                        {/* بطاقة النصوص العارضة */}
                         <div className="mt-4 p-6 rounded-2xl bg-[#050911] border border-emerald-500/30 max-w-lg w-full text-center shadow-[0_0_35px_rgba(0,0,0,0.8)] relative overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/[0.06] to-transparent pointer-events-none" />
 
@@ -269,7 +270,7 @@ export default function CertificatesSection() {
                     </div>
                 </div>
 
-                {/* ================= CERTIFICATES SECTION ================= */}
+                {/* CERTIFICATES SECTION */}
                 <div className="space-y-6">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-2 border-b border-slate-900 pb-5">
                         <div>
@@ -307,7 +308,6 @@ export default function CertificatesSection() {
                                 <div className="mt-5 pt-3 border-t border-slate-900 flex justify-between items-center text-[10px] text-slate-400 font-mono">
                                     <span>{cert.date}</span>
 
-                                    {/* 👈 التعديل هنا: يحول زرار View لرابط يفتح ملف درايف مباشرة */}
                                     <a
                                         href={cert.pdfUrl}
                                         target="_blank"
