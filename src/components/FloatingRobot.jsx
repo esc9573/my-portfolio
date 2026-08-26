@@ -62,16 +62,16 @@ const generateSmartReply = (input) => {
     ) {
         return `تقدر تتواصل مع زياد مباشرة من خلال الطرق التالية:
 
-📧 الإيميل:
+الإيميل:
 zyadwled71@gmail.com
 
-📱 الهاتف / واتساب:
+ الهاتف / واتساب:
 +20 103 300 7891
 
-💼 LinkedIn:
+ LinkedIn:
 https://www.linkedin.com/in/ziad-waleed-051975306/
 
-💻 GitHub:
+ GitHub:
 https://github.com/esc9573
 
 أو تقدر تبعت رسالة مباشرة من خلال قسم (Initiate Handshake) في أسفل الصفحة!`;
@@ -98,17 +98,17 @@ https://github.com/esc9573
     if (text.includes('مهار') || text.includes('تقن') || text.includes('skills') || text.includes('بتشتغل ب ايه') || text.includes('لغات') || text.includes('خبرة')) {
         return `التقنيات والمهارات التي يتقنها زياد:
 
-⚡ Frontend Core:
+ Frontend Core:
 • HTML5 / CSS3 / JavaScript (ES6+)
 • React.js & Vite
 • Tailwind CSS & Bootstrap
 
-🛠 Tools & Backend Scripting:
+ Tools & Backend Scripting:
 • Git & GitHub
 • Node.js / PHP / Python / C++
 • Streamlit & Data Visualization
 
-🚀 Deployment & Hosting:
+ Deployment & Hosting:
 • Vercel & Cloudflare`;
     }
 
