@@ -87,10 +87,10 @@ export default function CertificatesSection() {
 
     const [activeSkillIndex, setActiveSkillIndex] = useState(0);
     const itemRefs = useRef([]);
-    const isFirstRender = useRef(true); // 👈 حارس لمنع السكرول عند تحميل الصفحة لأول مرة
+    const isFirstRender = useRef(true); 
 
     useEffect(() => {
-        // تجاهل أول Render لتجنب السحب عند التحميل
+          
         if (isFirstRender.current) {
             isFirstRender.current = false;
             return;
