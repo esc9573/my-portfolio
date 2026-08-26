@@ -16,7 +16,7 @@ function RobotHead() {
     return (
         
         <group ref={headRef} scale={0.75} position={[0, -0.2, 0]}>
-            {/* رأس الروبوت */}
+          
             <mesh position={[0, 0, 0]}>
                 <boxGeometry args={[2, 1.6, 1.5]} />
                 <meshStandardMaterial color="#1e293b" metalness={0.8} roughness={0.2} />
@@ -49,12 +49,11 @@ export default function InteractiveRobotChat() {
     const [isTyping, setIsTyping] = useState(false);
     const chatEndRef = useRef(null);
 
-    // التمرير التلقائي لأسفل الشات عند إضافة رسائل جديدة
     useEffect(() => {
         chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages, isTyping]);
 
-    // محاكاة الرد الذكي (يمكن ربطها بـ Gemini API)
+  
     const handleSendMessage = (e) => {
         e.preventDefault();
         if (!input.trim()) return;
