@@ -1,7 +1,7 @@
 import { useRef, Suspense, useState, useEffect } from 'react';
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, Float } from "@react-three/drei";
-import { Bot, X, Send, User, Sparkles, Lightbulb, BookOpen, Code, Share2 } from 'lucide-react';
+import { Bot, X, Send, User, Sparkles, BookOpen, Code, Share2 } from 'lucide-react';
 import * as THREE from 'three';
 
 import droneUrl from '../assets/Squidbot.glb?url';
@@ -10,6 +10,21 @@ function RobotModel({ setScrollProgress }) {
     const { scene } = useGLTF(droneUrl);
     const robotRef = useRef();
     const targetRotation = useRef({ x: 0, y: 0 });
+
+    const [responsiveScale, setResponsiveScale] = useState(0.55);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 640) {
+                setResponsiveScale(0.42);
+            } else {
+                setResponsiveScale(0.55);
+            }
+        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -32,9 +47,8 @@ function RobotModel({ setScrollProgress }) {
         robotRef.current.rotation.x = THREE.MathUtils.lerp(robotRef.current.rotation.x, targetRotation.current.x, 0.1);
     });
 
-    return <primitive ref={robotRef} object={scene} scale={0.55} position={[0, -0.2, 0]} />;
+    return <primitive ref={robotRef} object={scene} scale={responsiveScale} position={[0, -0.2, 0]} />;
 }
-
 
 const generateSmartReply = (input) => {
     const text = input.toLowerCase().trim();
@@ -62,13 +76,13 @@ const generateSmartReply = (input) => {
     ) {
         return `تقدر تتواصل مع زياد مباشرة من خلال الطرق التالية:
 
-الإيميل:
+📧 الإيميل:
 zyadwled71@gmail.com
 
  الهاتف / واتساب:
 +20 103 300 7891
 
- LinkedIn:
+LinkedIn:
 https://www.linkedin.com/in/ziad-waleed-051975306/
 
  GitHub:
@@ -77,11 +91,9 @@ https://github.com/esc9573
 أو تقدر تبعت رسالة مباشرة من خلال قسم (Initiate Handshake) في أسفل الصفحة!`;
     }
 
-
     if (text.includes('مين زياد') || text.includes('مين انت') || text.includes('صاحب الموقع') || text.includes('تعرف زياد') || text.includes('من هو')) {
         return "زياد وليد هو مطور واجهات مستخدم (Frontend Developer) ومطور ويب مستقل. لديه خبرة في بناء تطبيقات ويب حديثة وسريعة باستخدام React وTailwind CSS، وحاصل على دبلومة Frontend من معهد ITI.";
     }
-
 
     if (text.includes('فاريلانس') || text.includes('مستقل') || text.includes('خمسات') || text.includes('نفذلي') || text.includes('شغل') || text.includes('توظيف') || text.includes('مشروع خاص') || text.includes('شغلك')) {
         return `زياد يقدم خدمات تطوير الويب والـ Frontend على منصات العمل الحر المختلفة:
@@ -93,7 +105,6 @@ https://github.com/esc9573
 
 لو عندك مشروع حابب تنفذه أو فكرة حابب تحولها لموقع تفاعلي سريح، تقدر تتواصل معاه فوراً عبر الواتساب (+201033007891) أو الإيميل!`;
     }
-
 
     if (text.includes('مهار') || text.includes('تقن') || text.includes('skills') || text.includes('بتشتغل ب ايه') || text.includes('لغات') || text.includes('خبرة')) {
         return `التقنيات والمهارات التي يتقنها زياد:
@@ -133,11 +144,9 @@ https://github.com/esc9573
         return "لتجنب التشتت أثناء المذاكرة والعمل:\n1. استخدم تقنية البومودورو (25 دقيقة عمل مركز + 5 دقائق استراحة).\n2. أبعد الهاتف تماماً عن مكتبك أثناء ساعات التركيز.\n3. حدد قائمة المهام اليومية (To-Do List) بحد أقصى 3 مهام رئيسية لكل يوم.";
     }
 
-
     if (text.includes('شكرا') || text.includes('تسلم') || text.includes('حبيبي') || text.includes('متشكر') || text.includes('thanks') || text.includes('thank you')) {
         return "العفو! تحت أمرك في أي وقت. لو عندك أي استفسار تاني أنا جاهز دائماً!";
     }
-
 
     const generalReplies = [
         "فكرة ممتازة وموضوع مهم! لو حابب تستفسر أكتر عن خدمات زياد أو تتواصل معاه مباشرة تقدر تستخدم قسم التواصل أسفل الصفحة.",
@@ -192,12 +201,12 @@ export default function FloatingRobot() {
 
     return (
         <div
-            className="fixed bottom-6 right-6 z-50 flex flex-col items-end transition-transform duration-300 ease-out font-sans"
+            className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end transition-transform duration-300 ease-out font-sans max-w-[calc(100vw-1.5rem)]"
             style={{ transform: `translate(${translateX}px, ${translateY}px)` }}
         >
             {/* 1. نافذة الشات */}
             {isOpen && (
-                <div className="w-[320px] sm:w-[380px] h-[490px] bg-[#070c14]/95 border border-cyan-500/30 rounded-3xl shadow-[0_0_40px_rgba(0,242,255,0.15)] backdrop-blur-2xl flex flex-col mb-4 overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-300">
+                <div className="w-[calc(100vw-1.5rem)] max-w-[360px] sm:w-[380px] h-[440px] sm:h-[490px] bg-[#070c14]/95 border border-cyan-500/30 rounded-3xl shadow-[0_0_40px_rgba(0,242,255,0.15)] backdrop-blur-2xl flex flex-col mb-2 overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-300">
 
                     {/* Header */}
                     <div className="p-3.5 bg-[#0d1527] border-b border-slate-800 flex justify-between items-center">
@@ -220,7 +229,6 @@ export default function FloatingRobot() {
                             <X className="w-4 h-4" />
                         </button>
                     </div>
-
 
                     <div className="flex-1 p-3.5 overflow-y-auto space-y-3.5 scrollbar-thin">
                         {messages.map((msg) => (
@@ -271,7 +279,7 @@ export default function FloatingRobot() {
                             type="text"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
-                            placeholder="اكتب سؤالك أو اختر موضوعاً..."
+                            placeholder="اكتب سؤالك..."
                             className="flex-1 bg-[#04070d] border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-200 focus:outline-none focus:border-cyan-500/50"
                         />
                         <button
@@ -285,11 +293,13 @@ export default function FloatingRobot() {
                 </div>
             )}
 
-
+         
             <div className="flex flex-col items-end cursor-pointer group" onClick={() => setIsOpen(!isOpen)}>
+
+                {/* الرسالة التوضيحية (تختفي تماماً في الشاشات الصغيرة للموبايل وتظهر بدءاً من sm) */}
                 {!isOpen && (
-                    <div className="mb-2 p-3 rounded-2xl bg-[#0b1220]/90 border border-cyan-500/30 text-white shadow-xl backdrop-blur-md max-w-[210px]">
-                        <div className="flex items-center justify-between text-cyan-400 font-bold text-[10px] mb-1 font-mono">
+                    <div className="hidden sm:block mb-1 p-3 rounded-2xl bg-[#0b1220]/90 border border-cyan-500/30 text-white shadow-xl backdrop-blur-md max-w-[210px]">
+                        <div className="flex items-center justify-between text-cyan-400 font-bold text-[10px] mb-0.5 font-mono">
                             <span className="flex items-center gap-1"><Bot className="w-3 h-3" /> SMART BUDDY</span>
                         </div>
                         <p className="text-[11px] text-slate-300 leading-snug">
@@ -298,8 +308,9 @@ export default function FloatingRobot() {
                     </div>
                 )}
 
-                <div className="w-28 h-28 sm:w-36 sm:h-36 relative">
-                    <Canvas camera={{ position: [0, 0, 4], fov: 50 }}>
+              
+                <div className="w-20 h-20 sm:w-32 sm:h-32 relative flex items-center justify-center">
+                    <Canvas camera={{ position: [0, 0, 4.5], fov: 45 }}>
                         <ambientLight intensity={1.5} />
                         <directionalLight position={[5, 5, 5]} intensity={2.5} />
                         <Suspense fallback={null}>
