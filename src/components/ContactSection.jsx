@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Terminal, Send, Copy, Check, Cpu, Loader2, CheckCircle2, AlertCircle, Code, Layers, HelpCircle, TerminalSquare } from 'lucide-react';
 
-// مكون منفصل للوقت لمنع إعادة رندر الصفحة كاملة كل ثانية
+
 function LiveClock() {
     const [time, setTime] = useState('');
 
@@ -21,7 +21,6 @@ export default function ContactSection() {
     const [subject, setSubject] = useState('Collaboration Request');
     const [copiedField, setCopiedField] = useState(null);
 
-    // أوامر Terminal واضحة ومباشرة بدلاً من الـ Endpoints المعقدة
     const commands = [
         { cmd: 'run --collab', label: 'Collaboration Request', category: 'Project', icon: <Code className="w-3.5 h-3.5 text-emerald-400" /> },
         { cmd: 'npm test --freelance', label: 'Freelance Project', category: 'Hire', icon: <Layers className="w-3.5 h-3.5 text-teal-400" /> },
