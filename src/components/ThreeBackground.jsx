@@ -40,7 +40,7 @@ export default function ThreeBackground() {
         // Depth parallax
         pos.z += sin(d * 8.0 - uTime * 2.0) * force * 0.08;
 
-        // زيادة الشفافية الأساسية للنجوم البعيدة من 0.2 إلى 0.45
+        
         vAlpha = mix(0.45, 1.0, force) * twinkle;
         vDist = force;
 
@@ -63,10 +63,8 @@ export default function ThreeBackground() {
         float r = length(uv);
         if (r > 0.5) discard;
 
-        // تنعيم التوهج الداخلي لنواة النجمة لتظهر بشكل أوضح
         float core = pow(smoothstep(0.5, 0.0, r), 1.2);
         
-        // الألوان الأساسية للنجم (رفعنا سطوع درجات اللون بشكل بسيط)
         vec3 baseStar = vec3(0.1, 0.95, 0.90); 
         vec3 activeStar = vec3(0.85, 1.0, 0.98);
         vec3 color = mix(baseStar, activeStar, vDist);
