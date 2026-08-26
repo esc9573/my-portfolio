@@ -14,7 +14,7 @@ function RobotHead() {
     });
 
     return (
-        // 👈 تصغير حجم الروبوت باستخدام scale
+        
         <group ref={headRef} scale={0.75} position={[0, -0.2, 0]}>
             {/* رأس الروبوت */}
             <mesh position={[0, 0, 0]}>
@@ -22,13 +22,12 @@ function RobotHead() {
                 <meshStandardMaterial color="#1e293b" metalness={0.8} roughness={0.2} />
             </mesh>
 
-            {/* عين الروبوت المضيئة */}
+            
             <mesh position={[0, 0, 0.76]}>
                 <boxGeometry args={[1.4, 0.3, 0.1]} />
                 <meshBasicMaterial color="#00f2ff" />
             </mesh>
 
-            {/* الإنتينا / الأذن */}
             <mesh position={[0, 1.1, 0]}>
                 <cylinderGeometry args={[0.05, 0.05, 0.6]} />
                 <meshStandardMaterial color="#64748b" />
