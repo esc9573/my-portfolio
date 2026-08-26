@@ -8,12 +8,12 @@ export default function HeroSection() {
             id="hero"
             className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-[#0a0c10] font-sans select-none"
         >
-            {/* 1. 3D Background - شغال في الخلفية الكلية */}
+            
             <div className="absolute inset-0 z-0 pointer-events-auto">
                 <ThreeBackground />
             </div>
 
-            {/* 2. Background Image Fix - هادئة جداً عشان ما تاكلش النقط والـ 3D */}
+            
             <div
                 className="absolute inset-0 z-[1] bg-center bg-no-repeat bg-contain opacity-[0.03] mix-blend-screen pointer-events-none filter blur-[1px]"
                 style={{
